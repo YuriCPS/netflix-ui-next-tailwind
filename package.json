@@ -15,6 +15,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "cssnano": "^5.0.16",
     "next": "12",
     "react": "^17.0.0",

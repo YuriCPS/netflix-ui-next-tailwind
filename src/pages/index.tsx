@@ -27,10 +27,8 @@ type HomeProps = {
 export default function Home({
   originals, popular, nowPlaying, trending, topRated, upcoming,
 }: HomeProps) {
-  console.log(popular);
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div>
       <Head>
         <title>Netflix UI by YuriCPS</title>
         <link rel="icon" href="/favicon.ico" />
@@ -38,13 +36,13 @@ export default function Home({
 
       <main>
         <h1 className="text-4xl font-bold text-center">Netflix UI</h1>
+        <MoviesRow category="Originals" list={originals} />
+        <MoviesRow category="Popular" list={popular} />
+        <MoviesRow category="Now Playing" list={nowPlaying} />
+        <MoviesRow category="Trending" list={trending} />
+        <MoviesRow category="Top Rated" list={topRated} />
+        <MoviesRow category="Upcoming" list={upcoming} />
       </main>
-      <MoviesRow category="Originals" list={originals} />
-      <MoviesRow category="Popular" list={popular} />
-      <MoviesRow category="Now Playing" list={nowPlaying} />
-      <MoviesRow category="Trending" list={trending} />
-      <MoviesRow category="Top Rated" list={topRated} />
-      <MoviesRow category="Upcoming" list={upcoming} />
       <Footer />
     </div>
   );

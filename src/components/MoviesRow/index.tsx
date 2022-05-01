@@ -1,3 +1,5 @@
+import MovieCard from 'components/MovieCard';
+
 export type MoviesRowProps = {
   category: string
   list: any[]
@@ -17,15 +19,16 @@ export type MoviesRowProps = {
 // };
 
 const MoviesRow = ({ category, list }: MoviesRowProps) => (
-  <div className="mx-1 my-8">
-    <h2 className="mx-8 mt-10 text-2xl font-bold uppercase">{category}</h2>
-    <div className="flex p-4 overflow-x-auto">
+  <div className="mx-20 my-8">
+    <h2 className="pb-4 text-2xl font-bold">{category}</h2>
+    <div className="flex h-56">
       {list.map((movie) => (
-        <img
-          key={movie.title || movie.name}
-          src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-          alt={movie.title || movie.name}
-        />
+        // <img
+        //   key={movie.title || movie.name}
+        //   src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+        //   alt={movie.title || movie.name}
+        // />
+        <MovieCard key={movie.title || movie.name} image={movie.backdrop_path} />
       ))}
     </div>
   </div>

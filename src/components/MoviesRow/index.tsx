@@ -3,6 +3,7 @@ import MovieCard from 'components/MovieCard';
 export type MoviesRowProps = {
   category: string
   list: any[]
+  genres: any[]
 };
 
 // interface Styles {

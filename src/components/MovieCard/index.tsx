@@ -48,7 +48,7 @@ const MovieCard = ({ image }: MovieCardProps) => (
     </div>
     <div className="flex items-center invisible delay-500 group-hover:visible">
       <p className="mx-3 text-sm text-green-400">96% relevante</p>
-      <Image src={rating10} alt="Rating" width={30} height={30} />
+      <Image src={rating10} alt="Rating" width={20} height={20} />
       <p className="mx-3 text-sm">Minisérie</p>
     </div>
     <div className="flex items-center invisible mt-2 mb-4 delay-500 group-hover:visible">

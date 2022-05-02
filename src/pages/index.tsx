@@ -13,6 +13,8 @@ const endpoints = {
   trending: '/trending/all/week',
   topRated: '/movie/top_rated',
   upcoming: '/movie/upcoming',
+  genresMovies: '/genre/movie/list',
+  genresTv: '/genre/tv/list',
 };
 
 type HomeProps = {
@@ -22,10 +24,12 @@ type HomeProps = {
   trending: object[];
   topRated: object[];
   upcoming: object[];
+  genresMovies: object[];
+  genresTv: object[];
 };
 
 export default function Home({
-  originals, popular, nowPlaying, trending, topRated, upcoming,
+  originals, popular, nowPlaying, trending, topRated, upcoming, genresMovies, genresTv,
 }: HomeProps) {
   return (
     <div>
@@ -36,12 +40,12 @@ export default function Home({
 
       <main>
         <h1 className="text-4xl font-bold text-center">Netflix UI</h1>
-        <MoviesRow category="Originals" list={originals} />
-        <MoviesRow category="Popular" list={popular} />
-        <MoviesRow category="Now Playing" list={nowPlaying} />
-        <MoviesRow category="Trending" list={trending} />
-        <MoviesRow category="Top Rated" list={topRated} />
-        <MoviesRow category="Upcoming" list={upcoming} />
+        <MoviesRow category="Originals" list={originals} genres={genresTv} />
+        <MoviesRow category="Popular" list={popular} genres={genresMovies} />
+        <MoviesRow category="Now Playing" list={nowPlaying} genres={genresMovies} />
+        <MoviesRow category="Trending" list={trending} genres={genresMovies} />
+        <MoviesRow category="Top Rated" list={topRated} genres={genresMovies} />
+        <MoviesRow category="Upcoming" list={upcoming} genres={genresMovies} />
       </main>
       <Footer />
     </div>
@@ -85,6 +89,18 @@ export const getServerSideProps = async () => {
     },
   }).then((res) => res.data.results);
 
+  const genresMovies = await axios.get(`${URL}${endpoints.genresMovies}`, {
+    params: {
+      api_key: API_KEY,
+    },
+  }).then((res) => res.data.genres);
+
+  const genresTv = await axios.get(`${URL}${endpoints.genresTv}`, {
+    params: {
+      api_key: API_KEY,
+    },
+  }).then((res) => res.data.genres);
+
   return {
     props: {
       originals,
@@ -93,6 +109,8 @@ export const getServerSideProps = async () => {
       trending,
       topRated,
       upcoming,
+      genresMovies,
+      genresTv,
     },
   };
 };

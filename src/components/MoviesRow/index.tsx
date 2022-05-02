@@ -3,7 +3,7 @@ import MovieCard from 'components/MovieCard';
 export type MoviesRowProps = {
   category: string
   list: any[]
-  genres: any[]
+  genresList: any[]
 };
 
 // interface Styles {
@@ -19,7 +19,7 @@ export type MoviesRowProps = {
 //   common: '',
 // };
 
-const MoviesRow = ({ category, list }: MoviesRowProps) => (
+const MoviesRow = ({ category, list, genresList }: MoviesRowProps) => (
   <div className="mx-20 my-8">
     <h2 className="pb-4 text-2xl font-bold">{category}</h2>
     <div className="flex h-56">
@@ -29,7 +29,12 @@ const MoviesRow = ({ category, list }: MoviesRowProps) => (
         //   src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
         //   alt={movie.title || movie.name}
         // />
-        <MovieCard key={movie.title || movie.name} image={movie.backdrop_path} />
+        <MovieCard
+          key={movie.title || movie.name}
+          image={movie.backdrop_path}
+          genresList={genresList}
+          genres={movie.genre_ids}
+        />
       ))}
     </div>
   </div>

@@ -24,16 +24,12 @@ const MoviesRow = ({ category, list, genresList }: MoviesRowProps) => (
     <h2 className="pb-4 text-2xl font-bold">{category}</h2>
     <div className="flex h-56">
       {list.map((movie) => (
-        // <img
-        //   key={movie.title || movie.name}
-        //   src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-        //   alt={movie.title || movie.name}
-        // />
         <MovieCard
           key={movie?.title}
           image={movie.backdrop_path}
           genresList={genresList}
           genres={movie.genre_ids}
+          relevance={movie.vote_average}
         />
       ))}
     </div>

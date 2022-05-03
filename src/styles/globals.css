@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply bg-background text-ice;
+    @apply bg-background text-ice overflow-x-hidden;
   }
 }

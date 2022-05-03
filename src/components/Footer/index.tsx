@@ -1,21 +1,16 @@
 import Image from 'next/image';
+import tmdbLogo from '../../../public/assets/tmdb.svg';
 
 const Footer = () => (
-  <footer className="flex items-center justify-center w-full h-24 border-t">
-    <a
-      className="flex items-center justify-center"
-      href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Powered by
-      {' '}
+  <footer className="p-2 mx-auto my-8 text-center">
+    <h4 className="m-2 text-sm hover:font-bold">Netflix UI made with NextJS + Tailwind by YuriCPS</h4>
+    <h4 className="m-2 text-sm hover:font-bold">This project uses The Movie Database(TMDb) API</h4>
+    <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">
       <Image
-        src="/vercel.svg"
-        alt="Vercel Logo"
-        className="h-4 ml-2"
-        width={100}
-        height={100}
+        className="mx-auto"
+        src={tmdbLogo}
+        alt="The Movie Database"
+        width={250}
       />
     </a>
   </footer>

@@ -30,7 +30,7 @@ const MoviesRow = ({ category, list, genresList }: MoviesRowProps) => (
         //   alt={movie.title || movie.name}
         // />
         <MovieCard
-          key={movie.title || movie.name}
+          key={movie?.title}
           image={movie.backdrop_path}
           genresList={genresList}
           genres={movie.genre_ids}

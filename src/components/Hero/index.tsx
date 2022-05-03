@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Button from 'components/Button';
 
 export type HeroProps = {
@@ -19,7 +20,16 @@ export type HeroProps = {
 
 const Hero = ({ movies }: HeroProps) => {
   // const movie = movies[Math.floor(Math.random() * movies.length - 1)];
-  const movie = movies[2];
+  // const movie = movies[2];
+  const [movie, setMovie] = useState({
+    title: '',
+    backdrop_path: '',
+    overview: '',
+  });
+
+  useEffect(() => {
+    setMovie(movies[Math.floor(Math.random() * movies.length - 1)]);
+  }, [movies]);
 
   return (
     <div

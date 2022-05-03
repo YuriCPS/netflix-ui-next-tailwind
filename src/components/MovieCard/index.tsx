@@ -15,26 +15,42 @@ export type MovieCardProps = {
   type: string
 };
 
-const URL = 'https://api.themoviedb.org/3';
-const API_KEY = '20147a1534ba357ca36b05b79d848ac3';
+interface Styles {
+  mainContainer: { [key: string]: string }
+  buttons: { [key: string]: string }
+  infos: { [key: string]: string }
+  genres: { [key: string]: string }
+}
 
-// interface Styles {
-//   bg: { [key: string]: string }
-//   common: string,
-// }
-
-// const style: Styles = {
-//   bg: {
-//     style1: '',
-//     style2: '',
-//   },
-//   common: '',
-// };
+const style: Styles = {
+  mainContainer: {
+    base: 'z-10 m-1 duration-200 delay-200 rounded-md h-72 group',
+    hover: 'hover:scale-150 hover:delay-500 hover:bg-background hover:z-40',
+  },
+  buttons: {
+    container: 'flex invisible delay-500 group-hover:visible',
+    play: 'ml-3 mr-2 bg-white hover:bg-gray-300',
+    plus: 'border-[1px] border-neutral-400 bg-neutral-800 hover:border-white',
+    thumbUp: 'mx-2 border-[1px] border-neutral-400 bg-neutral-800 hover:border-white',
+    down: 'mr-4 border-[1px] ml-28 border-neutral-400 bg-neutral-800 hover:border-white',
+    common: 'relative grid w-8 h-8 my-4 rounded-full place-items-center',
+  },
+  infos: {
+    container: 'flex invisible delay-500 group-hover:visible',
+    match: 'text-green-400',
+    common: 'mx-3 text-sm font-medium',
+  },
+  genres: {
+    container: 'flex invisible my-4 delay-500 group-hover:visible',
+    common: 'mx-3 text-xs',
+  },
+};
 
 const MovieCard = ({
   image, genresList, genres, relevance, id, type,
 }: MovieCardProps) => {
   const [rating, setRating] = useState('16');
+
   const getGenres = () => {
     const genresNames = genres.map((genre) => {
       const genreName = genresList.find((g) => g.id === genre);
@@ -43,18 +59,22 @@ const MovieCard = ({
     return genresNames.join(' ● ');
   };
 
-  const getRelevance = () => {
+  const getMatch = () => {
     const value = Number(relevance) * 10;
     return `${value}% Match`;
   };
 
   useEffect(() => {
+    const URL = 'https://api.themoviedb.org/3';
+    const API_KEY = '20147a1534ba357ca36b05b79d848ac3';
+
     const getCertificate = async () => {
       const certificate = await axios.get(`${URL}/movie/${id}/release_dates`, {
         params: {
           api_key: API_KEY,
         },
       }).then((res) => res.data.results);
+
       const rate = certificate.find((c :any) => c.iso_3166_1 === 'BR');
       let ratingValue = rate?.release_dates[0].certification;
       if (!ratingValue) {
@@ -62,41 +82,46 @@ const MovieCard = ({
       }
       setRating(ratingValue);
     };
-
     getCertificate();
   }, [id]);
 
   return (
-    <div className="z-10 m-1 duration-200 delay-200 rounded-md h-72 group w-80 hover:scale-150 hover:delay-500 hover:bg-background hover:z-40">
+    <div className={`${style.mainContainer.base} ${style.mainContainer.hover}`}>
       <Image
+        className="rounded-md"
         src={`https://image.tmdb.org/t/p/w500${image}`}
         alt="Movie"
         width={294}
         height={162}
         layout="responsive"
-        className="rounded-md hover:delay-500"
       />
-      <div className="flex invisible delay-500 group-hover:visible bg-background">
-        <div className="relative grid w-8 h-8 my-4 ml-3 mr-2 bg-white rounded-full place-items-center hover:bg-gray-300">
+      <div className={`${style.buttons.container}`}>
+        <div className={`${style.buttons.play} ${style.buttons.common}`}>
           <Image src={play} alt="Play" />
         </div>
-        <div className="relative grid w-8 h-8 my-4 border-[1px] rounded-full place-items-center border-neutral-400 bg-neutral-800 hover:border-white">
+        <div className={`${style.buttons.plus} ${style.buttons.common}`}>
           <Image src={plus} alt="Add" />
         </div>
-        <div className="relative grid w-8 h-8 mx-2 my-4 border-[1px] rounded-full place-items-center border-neutral-400 bg-neutral-800 hover:border-white">
+        <div className={`${style.buttons.thumbUp} ${style.buttons.common}`}>
           <Image src={thumbUp} alt="Thumbs Up" />
         </div>
-        <div className="relative grid w-8 h-8 my-4 mr-4 border-[1px] rounded-full ml-28 place-items-center border-neutral-400 bg-neutral-800 hover:border-white">
+        <div className={`${style.buttons.down} ${style.buttons.common}`}>
           <Image src={down} alt="More" />
         </div>
       </div>
-      <div className="flex items-center invisible delay-500 group-hover:visible">
-        <p className="mx-3 text-sm font-medium text-green-400 ">{getRelevance()}</p>
+      <div className={`${style.infos.container}`}>
+        <p className={`${style.infos.match} ${style.infos.common}`}>
+          {getMatch()}
+        </p>
         <Image src={`/assets/${rating}.png`} alt="Rating" width={20} height={20} unoptimized />
-        <p className="mx-3 text-sm font-medium">{type}</p>
+        <p className={`${style.infos.common}`}>
+          {type}
+        </p>
       </div>
-      <div className="flex items-center invisible mt-2 mb-4 delay-500 group-hover:visible">
-        <p className="mx-3 text-xs text-justify">{getGenres()}</p>
+      <div className={`${style.genres.container}`}>
+        <p className={`${style.genres.common}`}>
+          {getGenres()}
+        </p>
       </div>
     </div>
   );

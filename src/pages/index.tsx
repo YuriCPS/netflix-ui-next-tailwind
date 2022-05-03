@@ -3,20 +3,6 @@ import Head from 'next/head';
 import Footer from 'components/Footer';
 import MoviesRow from 'components/MoviesRow';
 
-const URL = 'https://api.themoviedb.org/3';
-const API_KEY = '20147a1534ba357ca36b05b79d848ac3';
-
-const endpoints = {
-  originals: '/discover/tv',
-  popular: '/movie/popular',
-  nowPlaying: '/movie/now_playing',
-  trending: '/trending/all/week',
-  topRated: '/movie/top_rated',
-  upcoming: '/movie/upcoming',
-  genresMovies: '/genre/movie/list',
-  genresTv: '/genre/tv/list',
-};
-
 type HomeProps = {
   originals: object[];
   popular: object[];
@@ -53,6 +39,20 @@ export default function Home({
 }
 
 export const getServerSideProps = async () => {
+  const URL = 'https://api.themoviedb.org/3';
+  const API_KEY = '20147a1534ba357ca36b05b79d848ac3';
+
+  const endpoints = {
+    originals: '/discover/tv',
+    popular: '/movie/popular',
+    nowPlaying: '/movie/now_playing',
+    trending: '/trending/all/week',
+    topRated: '/movie/top_rated',
+    upcoming: '/movie/upcoming',
+    genresMovies: '/genre/movie/list',
+    genresTv: '/genre/tv/list',
+  };
+
   const originals = await axios.get(`${URL}${endpoints.originals}`, {
     params: {
       api_key: API_KEY,

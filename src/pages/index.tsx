@@ -40,12 +40,12 @@ export default function Home({
 
       <main>
         <h1 className="text-4xl font-bold text-center">Netflix UI</h1>
-        <MoviesRow category="Originals" list={originals} genresList={genresTv} />
-        <MoviesRow category="Popular" list={popular} genresList={genresMovies} />
-        <MoviesRow category="Now Playing" list={nowPlaying} genresList={genresMovies} />
-        <MoviesRow category="Trending" list={trending} genresList={genresMovies} />
-        <MoviesRow category="Top Rated" list={topRated} genresList={genresMovies} />
-        <MoviesRow category="Upcoming" list={upcoming} genresList={genresMovies} />
+        <MoviesRow category="Originals" list={originals} genresList={genresTv} type="Series" />
+        <MoviesRow category="Popular" list={popular} genresList={genresMovies} type="Movie" />
+        <MoviesRow category="Now Playing" list={nowPlaying} genresList={genresMovies} type="Movie" />
+        <MoviesRow category="Trending" list={trending} genresList={genresMovies} type="Movie" />
+        <MoviesRow category="Top Rated" list={topRated} genresList={genresMovies} type="Movie" />
+        <MoviesRow category="Upcoming" list={upcoming} genresList={genresMovies} type="Movie" />
       </main>
       <Footer />
     </div>

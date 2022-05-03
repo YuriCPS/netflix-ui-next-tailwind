@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Head from 'next/head';
 import Footer from 'components/Footer';
+import Hero from 'components/Hero';
 import MoviesRow from 'components/MoviesRow';
 
 type HomeProps = {
@@ -25,7 +26,7 @@ export default function Home({
       </Head>
 
       <main>
-        <h1 className="text-4xl font-bold text-center">Netflix UI</h1>
+        <Hero movies={popular} />
         <MoviesRow category="Originals" list={originals} genresList={genresTv} type="Series" />
         <MoviesRow category="Popular" list={popular} genresList={genresMovies} type="Movie" />
         <MoviesRow category="Now Playing" list={nowPlaying} genresList={genresMovies} type="Movie" />

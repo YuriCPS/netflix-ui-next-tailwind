@@ -13,12 +13,8 @@ interface Styles {
 
 const style: Styles = {
   bg: {
-    amber: 'bg-amber-400 hover:bg-amber-500',
-    blue: 'bg-blue-600 hover:bg-blue-700 text-white',
-    green: 'bg-green-600 hover:bg-green-700 text-white',
-    neutral: 'bg-neutral-700 hover:bg-neutral-900 text-white',
-    red: 'bg-red-600 hover:bg-red-700 text-white',
-    violet: 'bg-violet-600 hover:bg-violet-800 text-white',
+    zinc: 'bg-zinc-700 hover:bg-zinc-500 text-white',
+    neutral: 'bg-neutral-100 hover:bg-neutral-400 text-black',
   },
   size: {
     small: 'text-sm',

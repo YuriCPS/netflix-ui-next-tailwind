@@ -41,7 +41,7 @@ const Hero = ({ movies }: HeroProps) => {
       <h1 className="pt-10 mb-4 text-5xl font-bold mt-96 ">{movie.title}</h1>
       <p className="w-1/3 mb-4 text-lg font-medium ">{movie.overview}</p>
       <Button text="Play" size="large" color="neutral" href="#" />
-      <Button text="More information" size="large" color="neutral" href="#" />
+      <Button text="More information" size="large" color="zinc" href="#" />
     </div>
   );
 };
